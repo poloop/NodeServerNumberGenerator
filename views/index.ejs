@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var generator = io.connect('http://localhost');
+
+
+        generator.on('connect', function() {
+            generator.emit('client ready', { message: 'client connection ready' });
+            generator.on('server ready', function(data) {
+                console.log(data);
+                generator.on('send number', function(number) {
+                   console.log(number.value);
+                });
+            });
+        });
+    </script>
+  </body>
+</html>

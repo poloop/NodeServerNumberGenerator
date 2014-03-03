@@ -10,4 +10,4 @@ Node application using express and socket.io to create a server which send rando
 
 ## Launch
 
->node app
+>node app.js
